@@ -3,11 +3,11 @@
 <head>
     <title>Story Kanban with Filter</title>
     <!--  (c) 2015,2016 CA Technologies.  All Rights Reserved. -->
-    <!--  Build Date: Thu Apr 21 2016 14:39:16 GMT-0400 (EDT) -->
+    <!--  Build Date: Fri Apr 22 2016 14:07:18 GMT-0400 (EDT) -->
     
     <script type="text/javascript">
-        var APP_BUILD_DATE = "Thu Apr 21 2016 14:39:16 GMT-0400 (EDT)";
-        var CHECKSUM = 33267350376;
+        var APP_BUILD_DATE = "Fri Apr 22 2016 14:07:18 GMT-0400 (EDT)";
+        var CHECKSUM = 33284828277;
     </script>
     
     <script type="text/javascript" src="/apps/2.1/sdk.js"></script>
@@ -1217,7 +1217,7 @@ Ext.define("SKF", {
         if(me.initiativeObjectID > 0){
 
             andFilters = Ext.create('Rally.data.wsapi.Filter',{
-                property: 'Feature.Parent.ObjectID',
+                property: 'Feature.Parent.Parent.ObjectID',
                 value: me.initiativeObjectID
             });
 
