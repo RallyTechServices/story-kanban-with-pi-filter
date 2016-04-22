@@ -302,7 +302,7 @@ Ext.define("SKF", {
         if(me.initiativeObjectID > 0){
 
             andFilters = Ext.create('Rally.data.wsapi.Filter',{
-                property: 'Feature.Parent.ObjectID',
+                property: 'Feature.Parent.Parent.ObjectID',
                 value: me.initiativeObjectID
             });
 
