@@ -3,11 +3,11 @@
 <head>
     <title>Story Kanban with Filter</title>
     <!--  (c) 2015,2016 CA Technologies.  All Rights Reserved. -->
-    <!--  Build Date: Fri Apr 22 2016 14:07:18 GMT-0400 (EDT) -->
+    <!--  Build Date: Fri Apr 29 2016 08:31:32 GMT-0400 (EDT) -->
     
     <script type="text/javascript">
-        var APP_BUILD_DATE = "Fri Apr 22 2016 14:07:18 GMT-0400 (EDT)";
-        var CHECKSUM = 33284828277;
+        var APP_BUILD_DATE = "Fri Apr 29 2016 08:31:32 GMT-0400 (EDT)";
+        var CHECKSUM = 33102500851;
     </script>
     
     <script type="text/javascript" src="/apps/2.1/sdk.js"></script>
@@ -999,16 +999,6 @@ Ext.define("SKF", {
                 '</tpl>'
             }
         );
-
-/*
-                displayTpl: '{"All"}: {0}' +
-                '<tpl for=".">' +
-                '<tpl if="ObjectID &gt; 0 ">' +
-                '{[values["FormattedID"]]}: {[values["Name"]]}' +
-                '</tpl>' +
-                '<tpl if="xindex < xcount">,</tpl>' +
-                '</tpl>'
-*/
         
     },
 
@@ -1222,12 +1212,19 @@ Ext.define("SKF", {
             });
 
         }else{
+
             andFilters = Ext.create('Rally.data.wsapi.Filter',{
-                property: 'Project',
-                value: me.getContext().getProject()._ref
-            });            
+                property: 'Feature.Parent.Parent.ObjectID',
+                operator: '>',
+                value: 0
+            });
+        
         }
 
+        andFilters.and({
+            property: 'Project',
+            value: me.getContext().getProject()._ref
+        });   
 
         if(this.getSetting('query')) {
             filters.push(Rally.data.QueryFilter.fromQueryString(this.getSetting('query')));
