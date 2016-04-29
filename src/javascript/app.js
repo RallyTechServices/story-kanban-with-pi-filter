@@ -84,16 +84,6 @@ Ext.define("SKF", {
                 '</tpl>'
             }
         );
-
-/*
-                displayTpl: '{"All"}: {0}' +
-                '<tpl for=".">' +
-                '<tpl if="ObjectID &gt; 0 ">' +
-                '{[values["FormattedID"]]}: {[values["Name"]]}' +
-                '</tpl>' +
-                '<tpl if="xindex < xcount">,</tpl>' +
-                '</tpl>'
-*/
         
     },
 
@@ -307,12 +297,19 @@ Ext.define("SKF", {
             });
 
         }else{
+
             andFilters = Ext.create('Rally.data.wsapi.Filter',{
-                property: 'Project',
-                value: me.getContext().getProject()._ref
-            });            
+                property: 'Feature.Parent.Parent.ObjectID',
+                operator: '>',
+                value: 0
+            });
+        
         }
 
+        andFilters.and({
+            property: 'Project',
+            value: me.getContext().getProject()._ref
+        });   
 
         if(this.getSetting('query')) {
             filters.push(Rally.data.QueryFilter.fromQueryString(this.getSetting('query')));
